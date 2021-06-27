@@ -8,10 +8,14 @@ import { useAuth } from "../hooks/useAuth";
 import { FormEvent } from "react";
 import { useState } from "react";
 import { database } from "../services/firebase";
-
+import { useTheme } from "../hooks/useTheme";
+//Para fazer deploy:
+//yarn build
+//firebase deploy
 export function Home(){ 
     const [roomCode, setRoomCode]=useState('');
     const {user, signInWithGoogle} = useAuth();
+    const {theme, toggleTheme} = useTheme();
     const history= useHistory();
     async function handleCreateRoom() {
         if (!user) {
@@ -44,7 +48,7 @@ export function Home(){
     }
     
     return (
-        <div id='page-auth'>
+        <div id='page-auth' className={theme}>
             <aside>
                 <img src={illustrationImg} alt='Illustration of Answers and Questions'/>                
                 <strong>Crie salas de Q&amp;A ao-ivo</strong>
@@ -52,6 +56,7 @@ export function Home(){
             </aside>
                 <main>
                     <div className="main-content">
+                        <button onClick={toggleTheme}>change</button>
                         <img src={logoImg} alt='Letmesask'/>
                         <button onClick={handleCreateRoom} className="create-room">
                             <img src={googleIconImg} alt='Logo do Google'/>
