@@ -8,6 +8,7 @@ import { useAuth } from '../hooks/useAuth';
 import { database } from '../services/firebase';
 import { Question } from '../components/Question';
 import { useRoom } from '../hooks/useRoom';
+import { useTheme } from '../hooks/useTheme';
 type RoomParams={
     id: string;
 }
@@ -18,6 +19,7 @@ export function Room(){
     const roomId= params.id;
     const [newQuestion, setNewQuestion] = useState('');
     const {questions, title} = useRoom(roomId);
+    const {theme} = useTheme();
     async function handleSendQuestion(event: FormEvent){
         event.preventDefault();
         if(newQuestion.trim() ===''){
@@ -51,7 +53,7 @@ export function Room(){
         }
     }
     return(
-        <div id="page-room">
+        <div id="page-room"className={theme} >
             <header>
                 <div className="content">
                     <img src={logoImg} alt="Letmeask"/>

@@ -55,14 +55,14 @@ export function Home(){
                 <p>Tire as dúvidas da sua audiência em tempo-real</p>
             </aside>
                 <main>
+                <Button onClick={toggleTheme} >{theme}</Button>
                     <div className="main-content">
-                        <button onClick={toggleTheme}>change</button>
                         <img src={logoImg} alt='Letmesask'/>
-                        <button onClick={handleCreateRoom} className="create-room">
+                        <button onClick={handleCreateRoom} className={ `create-room ${theme ? theme : ''}`}>
                             <img src={googleIconImg} alt='Logo do Google'/>
                             Crie sua sala com o Google
                         </button>
-                        <div className="separator">Ou entre em uma sala</div>
+                        <div className={ `separator ${theme ? theme : ''}`}>Ou entre em uma sala</div>
                         <form onSubmit={handleJoinRoom}>
                             <input 
                             value={roomCode}
