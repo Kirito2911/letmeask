@@ -1,7 +1,7 @@
 import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
 import { RoomCode } from '../components/RoomCode';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import '../styles/room.scss';
 import { FormEvent, useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
@@ -57,7 +57,10 @@ export function Room(){
             <header>
                 <div className="content">
                     <img src={logoImg} alt="Letmeask"/>
+                    <div>
                     <RoomCode code={roomId} />
+                    <Link to={`/admin/rooms/${roomId}`}><Button>Gerenciar</Button></Link>
+                    </div>
                 </div>
             </header>
             <main>
